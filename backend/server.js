@@ -1,8 +1,16 @@
-const io=require('socket.io')(5000,{
-    cors:{
-        origin:'*'
-    }
-})
+const express = require('express');
+const http = require('http');
+const path = require('path');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+});
 
 const rooms={};
 
@@ -46,3 +54,14 @@ io.on('connection',(socket)=>{
     console.log('Client Disconnected')
 })
 })
+
+app.use(express.static(path.join(__dirname, 'app', 'dist')));
+
+app.get('/*splat', (_, res) => {
+  res.sendFile(path.resolve(__dirname, 'app', 'dist', 'index.html'));
+});
+
+const PORT=8000
+server.listen(PORT, () => {
+  console.log('Server running on http://localhost:8000');
+});

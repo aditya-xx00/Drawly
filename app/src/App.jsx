@@ -20,8 +20,8 @@ const App = () => {
           <DrawingCanvas/>
         ):(
           <div>
-            <button onClick={createRoom}>Creae New Drawing Room</button>
-            <p className='drawing-room-message'>Create  a new roo, to start drawing app</p>
+            <button onClick={createRoom}>Create New Drawing Room</button>
+            <p className='drawing-room-message'>Create  a new room to start drawing app</p>
          
           </div>
         )}

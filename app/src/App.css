@@ -1,16 +1,18 @@
-.container{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  
-  height:100vh;
 
-  background-color: black
-}
-.canvas{
-  border:2px solid Red;
+.canvas {
+  border: 1px solid #000;
+  display: block;
+  margin: 0 auto;
   background-color: white;
+  max-width: 100%;
 }
+
+.container {
+  overflow: auto;
+  padding: 1rem;
+}
+
+
 .controls{
   margin-top:20px;
   text-align: center;

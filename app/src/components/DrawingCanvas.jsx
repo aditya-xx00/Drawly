@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import io from 'socket.io-client'
 import {v4 as uuidv4} from 'uuid'
+import { toast } from 'react-toastify';
 
 const DrawingCanvas = () => {
     const{roomId} =useParams();
@@ -11,12 +12,12 @@ const DrawingCanvas = () => {
     const[color,setColor]=useState('#000000');
     const[brushSize,setBrushSize]=useState(5);
     const[tool,setTool]=useState('freeDrawing');
-    const socket=useRef(io('http://localhost:8000')).current;
+    const socket=useRef(io('http://localhost:5000')).current;
     const[shareLink,setShareLink]=useState('');
     const[userId,setUserId]=useState(uuidv4());
 
 
-    
+
     useEffect(() =>{
         const canvas=canvasRef.current;
         const width=900;
@@ -273,11 +274,22 @@ else if (tool === 'arrow') {
    }
    const copyToClipboard =() =>{
     navigator.clipboard.writeText(shareLink)
-        .then(() => alert('Link copied to clipboard'));
+         .then(() => {
+      toast.success('Link copied to clipboard!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+    })
+    .catch(() => {
+      toast.error('Failed to copy the link', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+    });
     }
    useEffect(()=>{
     generateShareLink()
-},[roomId])
+    },[roomId])
   return (
     <div className='container'>
       <canvas

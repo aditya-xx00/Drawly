@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import DrawingCanvas from './components/DrawingCanvas'
 import './App.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
   const[roomId,setRoomId]=useState('');
 
@@ -35,9 +38,10 @@ const App = () => {
     }
   ])
   return (
-    <div>
+    <>
         <RouterProvider router={router}/>
-    </div>
+        <ToastContainer position="top-center" autoClose={3000} />
+    </>
   )
 }
 

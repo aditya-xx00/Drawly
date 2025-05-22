@@ -12,7 +12,7 @@ const DrawingCanvas = () => {
     const[color,setColor]=useState('#000000');
     const[brushSize,setBrushSize]=useState(5);
     const[tool,setTool]=useState('freeDrawing');
-    const socket=useRef(io('http://localhost:5000')).current;
+    const socket=useRef(io('https://drawly-1.onrender.com')).current;
     const[shareLink,setShareLink]=useState('');
     const[userId,setUserId]=useState(uuidv4());
 
